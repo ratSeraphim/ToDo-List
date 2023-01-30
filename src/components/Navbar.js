@@ -5,6 +5,9 @@ const Navigation = styled.nav`
   width: 100%;
   background-color: #241623;
   border-bottom: solid 10px #084c61;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 `;
 
 const SiteTitle = styled.h1`
@@ -13,24 +16,44 @@ const SiteTitle = styled.h1`
   color: #70a9a1;
 `;
 
-const Links = styled.a`
-  margin: auto auto;
-  padding: 20px;
+const MyButton = styled.a`
+  margin-right: 10px;
+  padding: 10px;
   border-radius: 10px;
   color: #241623;
   background-color: #70a9a1;
   &:hover {
     background-color: #084c61;
     cursor: pointer;
+    color: #fff;
   }
 `;
 
+const InputField = styled.input`
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  color: #241623;
+  background-color: #70a9a1;
+  &:hover {
+    background-color: #084c61;
+    cursor: pointer;
+    color: #fff;
+  }
+`;
+
+/* change a href to router links when i've got the page content done */
 const Navbar = () => {
   return (
     <Navigation>
-      <SiteTitle>To-Do list</SiteTitle>
-      <Links href="/">Home</Links>
-      <Links href="/create">Create New</Links>
+      <SiteTitle>To-Do List</SiteTitle>
+      <div className="links">
+        <MyButton href="/">Home</MyButton>
+        <MyButton href="/create">Create New</MyButton>
+      </div>
+      <form>
+        <InputField type="text" placeholder="search"></InputField>
+      </form>
     </Navigation>
   );
 };
