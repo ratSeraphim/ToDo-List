@@ -8,12 +8,7 @@ const TaskList = styled.div`
 `;
 
 const Home = () => {
-  return (
-    <TaskList>
-      <Task />
-      <Task />
-    </TaskList>
-  );
+  return <TaskList>{<Task />}</TaskList>;
 };
 
 export default Home;

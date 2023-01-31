@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./functionButtons/Button";
 
@@ -29,34 +28,36 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
-//temporarily hard-coding a task so I can figure out the formatting. will fix later.
 const Task = () => {
-  const [name, setName] = useState();
-  const [date, setDate] = useState();
-  const [desc, setDesc] = useState();
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("task"));
-    if (items) {
-      console.log(items.name);
-      setName(items.name);
-      setDate(items.date);
-      setDesc(items.description);
-    }
-  });
-
+  let todoArray = [];
+  let todo = localStorage.getItem("todo");
+  if (todo === null) {
+    todoArray = [];
+  } else {
+    todoArray = JSON.parse(todo);
+  }
   return (
-    <TaskDisplay>
-      <Title>{name}</Title>
-      <Date>{date}</Date>
-      <Description>{desc}</Description>
+    <div>
+      {todoArray.map((list) => (
+        <TaskDisplay key={list.id}>
+          <Title>{list.name}</Title>
+          <Date>{list.date}</Date>
+          <Description>{list.description}</Description>
 
-      <ButtonContainer>
-        <Button label="edit" primary />
-        <Button label="delete" />
-      </ButtonContainer>
-    </TaskDisplay>
+          <ButtonContainer>
+            <Button label="edit" primary />
+            <Button label="delete" />
+          </ButtonContainer>
+        </TaskDisplay>
+      ))}
+    </div>
   );
 };
 
+/*error in console comes up:
+ "react-jsx-dev-runtime.development.js:87 
+        
+  Warning: Each child in a list should have a unique "key" prop." 
+       ?? obviously messing with formatting, too.
+       note to self: figure out what's up with that T_T */
 export default Task;
