@@ -1,12 +1,10 @@
 import styled from "styled-components";
-import Delete from "./functionButtons/Delete";
-import Edit from "./functionButtons/Edit";
-import Buttons from "./functionButtons/TaskButtons";
+import Button from "./functionButtons/Button";
 
 const TaskDisplay = styled.div`
   display: flex;
   margin: 30px;
-  flex-direction: row;
+  flex-direction: column;
   background-color: #c7ebf0;
   padding: 20px;
   border-radius: 10px;
@@ -19,7 +17,15 @@ const Title = styled.h2`
 `;
 
 const Description = styled.div``;
-const Date = styled.div``;
+const Date = styled.div`
+  color: rgba(36, 22, 35, 0.7);
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 //temporarily hard-coding a task so I can figure out the formatting. will fix later.
 const Task = () => {
@@ -33,7 +39,11 @@ const Task = () => {
         expedita repudiandae adipisci vel quibusdam blanditiis distinctio
         reiciendis autem!
       </Description>
-      <Buttons />
+
+      <ButtonContainer>
+        <Button label="edit" primary />
+        <Button label="delete" />
+      </ButtonContainer>
     </TaskDisplay>
   );
 };

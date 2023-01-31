@@ -47,3 +47,8 @@ table {
 textarea {
   white-space: revert;
 }
+
+*::selection {
+  color: #fff;
+  background-color: #241623;
+}

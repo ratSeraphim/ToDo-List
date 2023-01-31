@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const DeleteButton = styled.a`
-  margin-right: 10px;
   padding: 10px;
   border-radius: 10px;
   color: #241623;

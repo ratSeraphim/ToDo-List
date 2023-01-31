@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Navigation = styled.nav`
@@ -16,7 +17,7 @@ const SiteTitle = styled.h1`
   color: #70a9a1;
 `;
 
-const MyButton = styled.a`
+const MyButton = styled(Link)`
   margin-right: 10px;
   padding: 10px;
   border-radius: 10px;
@@ -48,8 +49,8 @@ const Navbar = () => {
     <Navigation>
       <SiteTitle>To-Do List</SiteTitle>
       <div className="links">
-        <MyButton href="/">Home</MyButton>
-        <MyButton href="/create">Create New</MyButton>
+        <MyButton to="/">Home</MyButton>
+        <MyButton to="/create">Create New</MyButton>
       </div>
       <form>
         <InputField type="text" placeholder="search"></InputField>
