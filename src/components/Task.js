@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Button from "./functionButtons/Button";
 
 const TaskDisplay = styled.div`
   display: flex;
-  margin: 30px;
+  margin: 30px auto;
+  min-width: 80%;
   flex-direction: column;
   background-color: #c7ebf0;
   padding: 20px;
@@ -29,16 +31,25 @@ const ButtonContainer = styled.div`
 
 //temporarily hard-coding a task so I can figure out the formatting. will fix later.
 const Task = () => {
+  const [name, setName] = useState();
+  const [date, setDate] = useState();
+  const [desc, setDesc] = useState();
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("task"));
+    if (items) {
+      console.log(items.name);
+      setName(items.name);
+      setDate(items.date);
+      setDesc(items.description);
+    }
+  });
+
   return (
     <TaskDisplay>
-      <Title>Temp Task 1</Title>
-      <Date>2022/01/30</Date>
-      <Description>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam ex
-        consequatur eveniet odit sunt rem officiis ad enim ipsa quaerat dolor,
-        expedita repudiandae adipisci vel quibusdam blanditiis distinctio
-        reiciendis autem!
-      </Description>
+      <Title>{name}</Title>
+      <Date>{date}</Date>
+      <Description>{desc}</Description>
 
       <ButtonContainer>
         <Button label="edit" primary />

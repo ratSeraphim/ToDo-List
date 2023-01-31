@@ -11,6 +11,7 @@ const Home = () => {
   return (
     <TaskList>
       <Task />
+      <Task />
     </TaskList>
   );
 };

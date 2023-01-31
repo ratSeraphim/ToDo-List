@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import useLocalStorage from "./useLocalStorage";
 
 const MyForm = styled.form`
   display: flex;
@@ -22,15 +23,25 @@ const MyForm = styled.form`
 `;
 
 const CreatePage = () => {
+  const [formVal, setFormVal] = useLocalStorage("task", "");
+
+  const getFormData = (e) => {
+    e.preventDefault();
+    var data = new FormData(e.target);
+    let formObject = Object.fromEntries(data.entries());
+
+    setFormVal(formObject);
+  };
+
   return (
-    <MyForm>
+    <MyForm onSubmit={getFormData}>
       <label>Task Name:</label>
-      <input type="text"></input>
+      <input type="text" name="name" />
       <label>Description:</label>
-      <input type="textarea"></input>
+      <input type="textarea" name="description"></input>
       <label>Date:</label>
-      <input type="date"></input>
-      <input type="submit"></input>
+      <input type="date" name="date" />
+      <input type="submit" value="Save" />
     </MyForm>
   );
 };
