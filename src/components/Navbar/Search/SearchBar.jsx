@@ -1,37 +1,25 @@
 import styled from "styled-components";
 import { useState } from "react";
-import Task from "./Task/Task";
 
-//styled components
-const TaskList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Home = () => {
+const SearchBar = () => {
   const [searchInput, setSearchInput] = useState("");
-
   const handleChange = (e) => {
     e.preventDefault();
     var lowerCase = e.target.value.toLowerCase();
     setSearchInput(lowerCase);
   };
+
   return (
-    <div>
-      <InputField
-        type="text"
-        placeholder="Search"
-        onChange={handleChange}
-        value={searchInput}
-      ></InputField>
-      <TaskList>
-        <Task input={searchInput} />
-      </TaskList>
-    </div>
+    <InputField
+      type="text"
+      placeholder="Search"
+      onChange={handleChange}
+      value={searchInput}
+    ></InputField>
   );
 };
 
-export default Home;
+export default SearchBar;
 const InputField = styled.input`
   margin: 5px;
   padding: 5px;

@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CreatePage from "./components/CreatePage";
+import CreatePage from "./components/Create/CreatePage";
 import Home from "./components/Home";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
   return (

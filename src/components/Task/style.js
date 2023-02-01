@@ -1,0 +1,31 @@
+import styled from "styled-components";
+
+export const TaskDisplay = styled.div`
+  display: flex;
+  margin: 30px auto;
+  max-width: 80%;
+  flex-direction: column;
+  background-color: #c7ebf0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 5px 10px 5px rgba(36, 22, 35, 0.6);
+`;
+export const Title = styled.h2`
+  font-weight: bold;
+  font-size: 20px;
+  color: #241623;
+`;
+
+export const Date = styled.div`
+  color: rgba(36, 22, 35, 0.7);
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const Map = styled.div`
+  width: 100%;
+`;
