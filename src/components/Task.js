@@ -4,7 +4,7 @@ import Button from "./functionButtons/Button";
 const TaskDisplay = styled.div`
   display: flex;
   margin: 30px auto;
-  min-width: 80%;
+  max-width: 80%;
   flex-direction: column;
   background-color: #c7ebf0;
   padding: 20px;
@@ -28,6 +28,10 @@ const ButtonContainer = styled.div`
   justify-content: space-between;
 `;
 
+const Map = styled.div`
+  width: 100%;
+`;
+
 const Task = () => {
   let todoArray = [];
   let todo = localStorage.getItem("todo");
@@ -36,11 +40,14 @@ const Task = () => {
   } else {
     todoArray = JSON.parse(todo);
   }
+  //going to remove {index} from title later, just want to keep track of it for now
   return (
-    <div>
-      {todoArray.map((list) => (
-        <TaskDisplay key={list.id}>
-          <Title>{list.name}</Title>
+    <Map>
+      {todoArray.map((list, index) => (
+        <TaskDisplay key={index} index={index}>
+          <Title>
+            Nr {index}: {list.name}
+          </Title>
           <Date>{list.date}</Date>
           <Description>{list.description}</Description>
 
@@ -50,14 +57,8 @@ const Task = () => {
           </ButtonContainer>
         </TaskDisplay>
       ))}
-    </div>
+    </Map>
   );
 };
 
-/*error in console comes up:
- "react-jsx-dev-runtime.development.js:87 
-        
-  Warning: Each child in a list should have a unique "key" prop." 
-       ?? obviously messing with formatting, too.
-       note to self: figure out what's up with that T_T */
 export default Task;
