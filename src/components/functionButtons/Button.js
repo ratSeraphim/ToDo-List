@@ -1,7 +1,19 @@
 import styled from "styled-components";
 
 const Button = ({ primary, label }) => {
-  return <DefaultButton primary={primary}>{label}</DefaultButton>;
+  const handleClick = () => {
+    if (label === "delete") {
+      console.log("delete");
+    } else if (label === "edit") {
+      console.log("edit");
+    }
+  };
+
+  return (
+    <DefaultButton primary={primary} onClick={handleClick}>
+      {label}
+    </DefaultButton>
+  );
 };
 
 const DefaultButton = styled.a`
