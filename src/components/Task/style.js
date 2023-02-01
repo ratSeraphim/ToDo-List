@@ -8,7 +8,7 @@ export const TaskDisplay = styled.div`
   background-color: #c7ebf0;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 5px 10px 5px rgba(36, 22, 35, 0.6);
+  box-shadow: 2px 2px 3px rgba(80, 100, 140, 0.6);
 `;
 export const Title = styled.h2`
   font-weight: bold;

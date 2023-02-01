@@ -1,19 +1,11 @@
 import styled from "styled-components";
-import { useState } from "react";
 
-const SearchBar = () => {
-  const [searchInput, setSearchInput] = useState("");
-  const handleChange = (e) => {
-    e.preventDefault();
-    var lowerCase = e.target.value.toLowerCase();
-    setSearchInput(lowerCase);
-  };
-
+const SearchBar = ({ searchInput, handleInputChange }) => {
   return (
     <InputField
       type="text"
       placeholder="Search"
-      onChange={handleChange}
+      onChange={handleInputChange}
       value={searchInput}
     ></InputField>
   );

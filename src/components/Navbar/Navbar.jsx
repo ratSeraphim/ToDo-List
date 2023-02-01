@@ -1,7 +1,7 @@
 import SearchBar from "./Search/SearchBar";
 import * as S from "./style";
 
-const Navbar = () => {
+const Navbar = ({ handleInputChange, searchInput }) => {
   return (
     <S.Navigation>
       <S.SiteTitle>To-Do List</S.SiteTitle>
@@ -9,7 +9,10 @@ const Navbar = () => {
         <S.MyButton to="/">Home</S.MyButton>
         <S.MyButton to="/create">Create New</S.MyButton>
       </div>
-      <SearchBar />
+      <SearchBar
+        handleInputChange={handleInputChange}
+        searchInput={searchInput}
+      />
     </S.Navigation>
   );
 };
