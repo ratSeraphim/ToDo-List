@@ -10,7 +10,7 @@ function App() {
 
   const handleChange = (e) => {
     e.preventDefault();
-    var lowerCase = e.target.value.toLowerCase();
+    let lowerCase = e.target.value.toLowerCase();
     setSearchInput(lowerCase);
   };
   return (

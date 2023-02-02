@@ -15,7 +15,7 @@ const Button = ({ primary, label, index }) => {
         window.location.reload();
         break;
       case "edit":
-        console.log(index);
+        console.log("edit " + index);
         break;
       case "cancel":
         console.log("cancel");
