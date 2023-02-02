@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import Button from "../functionButtons/Button";
 import useLocalStorage from "../useLocalStorage";
 import * as S from "./style";
 
 const CreatePage = () => {
+  const navigate = useNavigate();
   let todoArray = [];
   const [formVal, setFormVal] = useLocalStorage("task", "");
 
@@ -14,14 +17,19 @@ const CreatePage = () => {
     let todo = localStorage.getItem("todo");
     if (todo === null) {
       todoArray = [];
+      formObject.index = 0;
     } else {
       todoArray = JSON.parse(todo);
+      formObject.index = todoArray[todoArray.length - 1].index + 1;
     }
+    console.log(todoArray[todoArray.length]);
+
     todoArray.push(formObject);
     localStorage.setItem("todo", JSON.stringify(todoArray));
 
     setFormVal(formObject);
     console.log(formVal);
+    navigate("/");
   };
 
   return (
@@ -33,6 +41,7 @@ const CreatePage = () => {
       <label>Date:</label>
       <input type="date" name="date" />
       <input type="submit" value="Save" />
+      <Button label="cancel"></Button>
     </S.MyForm>
   );
 };

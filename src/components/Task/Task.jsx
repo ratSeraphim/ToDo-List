@@ -24,7 +24,7 @@ const Task = (props) => {
       {filteredData.map((list, index) => (
         <S.TaskDisplay key={index} index={index}>
           <S.Title>
-            Nr {index}: {list.name}
+            Nr {list.index}: {list.name}
           </S.Title>
           <S.Date>{list.date}</S.Date>
           <div>{list.description}</div>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Button = ({ primary, label }) => {
+const Button = ({ primary, label, todoArray, index }) => {
   const handleClick = () => {
     if (label === "delete") {
       console.log("delete");
