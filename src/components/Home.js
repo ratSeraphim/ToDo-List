@@ -7,11 +7,11 @@ const TaskList = styled.div`
   flex-wrap: wrap;
 `;
 
-const Home = ({ searchInput }) => {
+const Home = ({ searchInput, taskNum }) => {
   return (
     <div>
       <TaskList>
-        <Task input={searchInput} />
+        <Task input={searchInput} taskNum={taskNum} />
       </TaskList>
     </div>
   );

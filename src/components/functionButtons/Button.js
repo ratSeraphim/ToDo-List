@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import CreatePage from "../Create/CreatePage";
 
-const Button = ({ primary, label, index }) => {
+const Button = ({ primary, label, index, editTask }) => {
   const navigate = useNavigate();
   let todo = localStorage.getItem("todo");
   const todoArray = JSON.parse(todo);
@@ -16,6 +17,7 @@ const Button = ({ primary, label, index }) => {
         break;
       case "edit":
         console.log("edit " + index);
+        <CreatePage index={index} />;
         break;
       case "cancel":
         console.log("cancel");

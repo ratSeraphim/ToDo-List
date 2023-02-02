@@ -19,7 +19,8 @@ function App() {
         <Navbar handleInputChange={handleChange} searchInput={searchInput} />
         <div className="content">
           <Routes>
-            <Route path="/create" element={<CreatePage />} />
+            <Route path="/create" element={<CreatePage index={-1} />} />
+            <Route path="/edit" element={<CreatePage index={1} />} />
             <Route path="/" element={<Home searchInput={searchInput} />} />
           </Routes>
         </div>

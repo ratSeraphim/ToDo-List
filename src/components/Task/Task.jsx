@@ -1,7 +1,7 @@
 import * as S from "./style";
 import Button from "../functionButtons/Button";
 
-const Task = (props) => {
+const Task = (input) => {
   let todoArray = [];
   let todo = localStorage.getItem("todo");
   if (todo === null) {
@@ -11,10 +11,10 @@ const Task = (props) => {
   }
 
   const filteredData = todoArray.filter((el) => {
-    if (props.input === "") {
+    if (input.input === "") {
       return el;
     } else {
-      return el.name.toLowerCase().includes(props.input);
+      return el.name.toLowerCase().includes(input.input);
     }
   });
   //going to remove {i} from title later, just want to keep track of it for now

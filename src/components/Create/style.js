@@ -19,4 +19,7 @@ export const MyForm = styled.form`
     margin: 10px;
     border-radius: 10px;
   }
+  input:hover {
+    background-color: #ccc;
+  }
 `;
