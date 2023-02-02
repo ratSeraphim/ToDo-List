@@ -17,10 +17,8 @@ const CreatePage = () => {
     let todo = localStorage.getItem("todo");
     if (todo === null) {
       todoArray = [];
-      formObject.index = 0;
     } else {
       todoArray = JSON.parse(todo);
-      formObject.index = todoArray[todoArray.length - 1].index + 1;
     }
     console.log(todoArray[todoArray.length]);
 

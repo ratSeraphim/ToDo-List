@@ -1,11 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const Button = ({ primary, label, todoArray, index }) => {
+const Button = ({ primary, label, index }) => {
+  const navigate = useNavigate();
+  let todo = localStorage.getItem("todo");
+  const todoArray = JSON.parse(todo);
+
   const handleClick = () => {
-    if (label === "delete") {
-      console.log("delete");
-    } else if (label === "edit") {
-      console.log("edit");
+    switch (label) {
+      case "delete":
+        console.log("clicked #" + index + " value");
+        todoArray.splice(index, 1);
+        localStorage.setItem("todo", JSON.stringify(todoArray));
+        window.location.reload();
+        break;
+      case "edit":
+        console.log(index);
+        break;
+      case "cancel":
+        console.log("cancel");
+
+        navigate("/");
+        break;
+      default:
+        console.log("button clicked");
     }
   };
 

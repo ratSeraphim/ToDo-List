@@ -17,21 +17,19 @@ const Task = (props) => {
       return el.name.toLowerCase().includes(props.input);
     }
   });
-
   //going to remove {index} from title later, just want to keep track of it for now
   return (
     <S.Map>
-      {filteredData.map((list, index) => (
-        <S.TaskDisplay key={index} index={index}>
+      {filteredData.map((list, i) => (
+        <S.TaskDisplay key={i} i={i}>
           <S.Title>
-            Nr {list.index}: {list.name}
+            Nr {i}: {list.name}
           </S.Title>
           <S.Date>{list.date}</S.Date>
           <div>{list.description}</div>
-
           <S.ButtonContainer>
-            <Button label="edit" primary />
-            <Button label="delete" />
+            <Button label="edit" primary index={i} />
+            <Button label="delete" index={i} />
           </S.ButtonContainer>
         </S.TaskDisplay>
       ))}
@@ -40,3 +38,5 @@ const Task = (props) => {
 };
 
 export default Task;
+
+/**/
