@@ -28,9 +28,6 @@ const CreatePage = () => {
     if (i) {
       const selectedItem = allTasks.find((task) => task.id === i);
 
-      console.log(selectedItem);
-      console.log(allTasks);
-
       if (selectedItem) {
         setFormData({
           name: selectedItem.name,

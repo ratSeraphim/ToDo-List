@@ -1,8 +1,7 @@
 import * as S from "./style";
 import Button from "../functionButtons/Button";
 
-const Task = ({ allTasks }) => {
-  //going to remove {i} from title later, just want to keep track of it for now
+const AllTasks = ({ allTasks }) => {
   return (
     <>
       {(!allTasks || allTasks.length === 0) && (
@@ -12,9 +11,7 @@ const Task = ({ allTasks }) => {
         <S.Map>
           {allTasks.map((list, i) => (
             <S.TaskDisplay key={i} i={i}>
-              <S.Title>
-                Nr {i}: {list.name}
-              </S.Title>
+              <S.Title>{list.name}</S.Title>
               <S.Date>created: {list.date}</S.Date>
               <div>{list.description}</div>
               <S.ButtonContainer>
@@ -29,6 +26,6 @@ const Task = ({ allTasks }) => {
   );
 };
 
-export default Task;
+export default AllTasks;
 
 /**/

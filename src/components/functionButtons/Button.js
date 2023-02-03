@@ -9,17 +9,14 @@ const Button = ({ primary, label, id }) => {
     switch (label) {
       case "delete":
         const newArrayAfterDelete = allTasks.filter((item) => item.id !== id);
-        console.log(newArrayAfterDelete);
         localStorage.setItem("todo", JSON.stringify(newArrayAfterDelete));
         window.location.reload();
         break;
       case "cancel":
-        console.log("cancel");
-
         navigate("/");
         break;
       default:
-        console.log("button clicked");
+        break;
     }
   };
 

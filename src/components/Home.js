@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Task from "./Task/Task";
+import AllTasks from "./Task/AllTasks";
 
-//styled components
 const TaskList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -27,8 +26,8 @@ const Home = ({ searchInput }) => {
   return (
     <div>
       <TaskList>
-        {!searchInput && <Task allTasks={allTasks} />}
-        {searchInput && <Task allTasks={filteredTasks} />}
+        {!searchInput && <AllTasks allTasks={allTasks} />}
+        {searchInput && <AllTasks allTasks={filteredTasks} />}
       </TaskList>
     </div>
   );
