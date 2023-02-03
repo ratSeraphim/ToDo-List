@@ -1,6 +1,5 @@
 import * as S from "./style";
 import Button from "../functionButtons/Button";
-import { Link } from "react-router-dom";
 
 const Task = (input) => {
   let todoArray = [];

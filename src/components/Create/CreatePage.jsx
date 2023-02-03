@@ -26,9 +26,15 @@ const CreatePage = () => {
   };
 
   const addTask = (e) => {
-    let data = new FormData(e.target);
-    let formObject = Object.fromEntries(data.entries());
     e.preventDefault();
+    let data = new FormData(e.target);
+
+    let formObject = Object.fromEntries(data.entries());
+    if (todo === null || todo === "[]") {
+      formObject.index = 0;
+    } else {
+      formObject.index = todoArray[todoArray.length - 1].index + 1;
+    }
 
     console.log(todoArray[todoArray.length]);
 
@@ -38,7 +44,7 @@ const CreatePage = () => {
     navigate("/");
   };
 
-  if (i === -1) {
+  if (i === undefined) {
     return (
       <S.MyForm onSubmit={addTask}>
         <label>Task Name:</label>
