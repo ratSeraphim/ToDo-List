@@ -1,85 +1,108 @@
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../functionButtons/Button";
-import getCurrentDate from "./getCurrentDate";
 import * as S from "./style";
 
 const CreatePage = () => {
+  const [allTasks, setAllTasks] = useState([]);
+  const [formData, setFormData] = useState({
+    name: "",
+    description: "",
+  });
   const navigate = useNavigate();
-  let todoArray = [];
   const { i } = useParams();
-  console.log({ i });
 
-  let todo = localStorage.getItem("todo");
-  if (todo === null) {
-    todoArray = [];
-  } else {
-    todoArray = JSON.parse(todo);
-  }
-
-  const editTask = (e) => {
-    let data = new FormData(e.target);
-    let formObject = Object.fromEntries(data.entries());
-    todoArray[i] = formObject;
-
-    localStorage.setItem("todo", JSON.stringify(todoArray));
-    navigate("/");
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
   };
 
-  const addTask = (e) => {
-    e.preventDefault();
-    let data = new FormData(e.target);
+  useEffect(() => {
+    setAllTasks(JSON.parse(localStorage.getItem("todo")));
+  }, []);
 
-    let formObject = Object.fromEntries(data.entries());
-    if (todo === null || todo === "[]") {
-      formObject.index = 0;
-    } else {
-      formObject.index = todoArray[todoArray.length - 1].index + 1;
+  useEffect(() => {
+    if (i) {
+      const selectedItem = allTasks.find((task) => task.id === i);
+
+      console.log(selectedItem);
+      console.log(allTasks);
+
+      if (selectedItem) {
+        setFormData({
+          name: selectedItem.name,
+          description: selectedItem.description,
+        });
+      }
     }
+  }, [allTasks, i]);
 
-    console.log(todoArray[todoArray.length]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-    todoArray.push(formObject);
-    localStorage.setItem("todo", JSON.stringify(todoArray));
+    if (i) {
+      const selectedItem = allTasks.find((task) => task.id === i);
+      const editedTask = {
+        id: selectedItem.id,
+        name: formData.name,
+        description: formData.description,
+        date: selectedItem.date,
+      };
 
+      const newArr = [];
+
+      const arrayNoEditedItem = allTasks.filter((item) => item.id !== i);
+      if (allTasks) {
+        arrayNoEditedItem.push(editedTask);
+        localStorage.setItem("todo", JSON.stringify(arrayNoEditedItem));
+      } else {
+        newArr.push(editedTask);
+        localStorage.setItem("todo", JSON.stringify(newArr));
+      }
+    } else {
+      const taskToAdd = {
+        id: crypto.randomUUID(),
+        name: formData.name,
+        description: formData.description,
+        date: new Date().toLocaleDateString(),
+      };
+
+      if (!allTasks) {
+        const newArr = [];
+        newArr.push(taskToAdd);
+        localStorage.setItem("todo", JSON.stringify(newArr));
+      } else {
+        allTasks.push(taskToAdd);
+        localStorage.setItem("todo", JSON.stringify(allTasks));
+      }
+    }
     navigate("/");
   };
 
-  if (i === undefined) {
-    return (
-      <S.MyForm onSubmit={addTask}>
-        <label>Task Name:</label>
-        <input type="text" name="name" required />
-        <label>Description:</label>
-        <input type="textarea" name="description"></input>
-        <label>Date created:</label>
-        <input name="date" value={getCurrentDate()} readOnly />
-        <input type="submit" value="Save" />
-        <Button label="cancel"></Button>
-      </S.MyForm>
-    );
-  } else if (i >= 0) {
-    return (
-      <S.MyForm onSubmit={editTask}>
-        <label>Task Name:</label>
-        <input
-          type="text"
-          name="name"
-          required
-          defaultValue={todoArray[i].name}
-        />
-        <label>Description:</label>
-        <input
-          type="textarea"
-          name="description"
-          defaultValue={todoArray[i].description}
-        ></input>
-        <label>Date edited:</label>
-        <input name="date" value={getCurrentDate()} readOnly />
-        <input type="submit" value="Save" />
-        <Button label="cancel"></Button>
-      </S.MyForm>
-    );
-  }
+  return (
+    <S.MyForm onSubmit={handleSubmit}>
+      <label>Task Name:</label>
+      <input
+        type="text"
+        name="name"
+        required
+        value={formData.name}
+        onChange={handleInput}
+      ></input>
+      <label>Description:</label>
+      <input
+        type="textarea"
+        name="description"
+        value={formData.description}
+        onChange={handleInput}
+      ></input>
+      <input type="submit" value="Save" />
+      <Button label="cancel"></Button>
+    </S.MyForm>
+  );
 };
 
 export default CreatePage;
