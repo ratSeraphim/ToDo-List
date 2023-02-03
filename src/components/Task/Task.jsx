@@ -3,10 +3,9 @@ import Button from "../functionButtons/Button";
 
 const Task = ({ allTasks }) => {
   //going to remove {i} from title later, just want to keep track of it for now
-
   return (
     <>
-      {(!allTasks || allTasks === []) && (
+      {(!allTasks || allTasks.length === 0) && (
         <S.TaskDisplay>No entries found</S.TaskDisplay>
       )}
       {allTasks && (

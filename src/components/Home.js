@@ -19,7 +19,7 @@ const Home = ({ searchInput }) => {
   useEffect(() => {
     if (searchInput) {
       const filteredTasks = allTasks.filter((task) =>
-        task.name.includes(searchInput)
+        task.name.toLowerCase().includes(searchInput)
       );
       setFilteredTasks(filteredTasks);
     }
