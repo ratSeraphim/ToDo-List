@@ -17,7 +17,7 @@ const Button = ({ primary, label, index, editTask }) => {
         break;
       case "edit":
         console.log("edit " + index);
-        <CreatePage index={index} />;
+        <CreatePage index={1} />;
         break;
       case "cancel":
         console.log("cancel");

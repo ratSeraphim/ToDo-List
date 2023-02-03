@@ -1,5 +1,6 @@
 import * as S from "./style";
 import Button from "../functionButtons/Button";
+import { Link } from "react-router-dom";
 
 const Task = (input) => {
   let todoArray = [];
@@ -30,7 +31,7 @@ const Task = (input) => {
             <S.Date>created: {list.date}</S.Date>
             <div>{list.description}</div>
             <S.ButtonContainer>
-              <Button label="edit" primary index={i} />
+              <S.MyButton to={`/edit/${i}`}>Edit</S.MyButton>
               <Button label="delete" index={i} />
             </S.ButtonContainer>
           </S.TaskDisplay>

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const TaskDisplay = styled.div`
@@ -28,4 +29,17 @@ export const ButtonContainer = styled.div`
 
 export const Map = styled.div`
   width: 100%;
+`;
+
+export const MyButton = styled(Link)`
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: #241623;
+  background-color: #70a9a1;
+  &:hover {
+    background-color: #084c61;
+    cursor: pointer;
+    color: #fff;
+  }
 `;

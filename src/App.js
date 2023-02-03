@@ -20,7 +20,7 @@ function App() {
         <div className="content">
           <Routes>
             <Route path="/create" element={<CreatePage index={-1} />} />
-            <Route path="/edit" element={<CreatePage index={1} />} />
+            <Route path="/edit/:i" element={<CreatePage />} />
             <Route path="/" element={<Home searchInput={searchInput} />} />
           </Routes>
         </div>

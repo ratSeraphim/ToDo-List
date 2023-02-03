@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../functionButtons/Button";
 import getCurrentDate from "./getCurrentDate";
 import * as S from "./style";
 
-const CreatePage = ({ index }) => {
+const CreatePage = () => {
   const navigate = useNavigate();
   let todoArray = [];
+  const { i } = useParams();
+  console.log({ i });
 
   let todo = localStorage.getItem("todo");
   if (todo === null) {
@@ -17,7 +19,7 @@ const CreatePage = ({ index }) => {
   const editTask = (e) => {
     let data = new FormData(e.target);
     let formObject = Object.fromEntries(data.entries());
-    todoArray[index] = formObject;
+    todoArray[i] = formObject;
 
     localStorage.setItem("todo", JSON.stringify(todoArray));
     navigate("/");
@@ -36,7 +38,7 @@ const CreatePage = ({ index }) => {
     navigate("/");
   };
 
-  if (index === -1) {
+  if (i === -1) {
     return (
       <S.MyForm onSubmit={addTask}>
         <label>Task Name:</label>
@@ -49,7 +51,7 @@ const CreatePage = ({ index }) => {
         <Button label="cancel"></Button>
       </S.MyForm>
     );
-  } else if (index >= 0) {
+  } else if (i >= 0) {
     return (
       <S.MyForm onSubmit={editTask}>
         <label>Task Name:</label>
@@ -57,13 +59,13 @@ const CreatePage = ({ index }) => {
           type="text"
           name="name"
           required
-          defaultValue={todoArray[index].name}
+          defaultValue={todoArray[i].name}
         />
         <label>Description:</label>
         <input
           type="textarea"
           name="description"
-          defaultValue={todoArray[index].description}
+          defaultValue={todoArray[i].description}
         ></input>
         <label>Date edited:</label>
         <input name="date" value={getCurrentDate()} readOnly />
